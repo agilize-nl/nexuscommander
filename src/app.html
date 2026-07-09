@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <link rel="manifest" href="%sveltekit.assets%/manifest.webmanifest" />
+    <meta name="theme-color" content="#101827" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Nexus Commander</title>
+    <script>
+      (function() {
+        try {
+          var theme = localStorage.getItem('nc-theme');
+          var colors = {
+            'midnight': '#0a0e17',
+            'dracula': '#21222c',
+            'solarized-dark': '#00212b',
+            'gruvbox': '#1d2021',
+            'ocean': '#0f111a',
+            'nortonly': '#003870',
+            'github-light': '#ffffff',
+            'solarized-light': '#ffffff',
+            'gruvbox-light': '#ffffff',
+            'catppuccin-latte': '#ffffff',
+            'arctic-light': '#ffffff'
+          };
+          if (theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            if (colors[theme]) {
+              document.documentElement.style.backgroundColor = colors[theme];
+            }
+            var darkThemes = ['midnight', 'dracula', 'solarized-dark', 'gruvbox', 'ocean', 'nortonly'];
+            if (darkThemes.indexOf(theme) !== -1) {
+              document.documentElement.classList.add('dark');
+            } else {
+              document.documentElement.classList.remove('dark');
+            }
+          } else {
+            document.documentElement.style.backgroundColor = '#0a0e17';
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+    %sveltekit.head%
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('SW registered:', reg))
+            .catch(err => console.log('SW registration failed:', err));
+        });
+      }
+    </script>
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>

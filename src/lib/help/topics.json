@@ -1,0 +1,108 @@
+[
+  {
+    "id": "intro",
+    "label": "Introduction",
+    "labelKey": "help_topics.intro",
+    "file": "intro.md"
+  },
+  {
+    "id": "basics",
+    "label": "Getting Started",
+    "labelKey": "help_topics.basics",
+    "children": [
+      {
+        "id": "layout",
+        "label": "Application Layout",
+        "labelKey": "help_topics.layout",
+        "file": "layout.md"
+      },
+      {
+        "id": "selection",
+        "label": "Selecting Files",
+        "labelKey": "help_topics.selection",
+        "file": "selection.md"
+      }
+    ]
+  },
+  {
+    "id": "operations",
+    "label": "File Operations",
+    "labelKey": "help_topics.operations",
+    "children": [
+      {
+        "id": "copy-move",
+        "label": "Copy and Move",
+        "labelKey": "help_topics.copy_move",
+        "file": "copy_move.md"
+      },
+      {
+        "id": "delete",
+        "label": "Deleting Files",
+        "labelKey": "help_topics.delete",
+        "file": "delete.md"
+      },
+      {
+        "id": "mkdir",
+        "label": "Creating Folders",
+        "labelKey": "help_topics.mkdir",
+        "file": "mkdir.md"
+      }
+    ]
+  },
+  {
+    "id": "advanced",
+    "label": "Advanced Tools",
+    "labelKey": "help_topics.advanced",
+    "children": [
+      {
+        "id": "search",
+        "label": "Finding Files",
+        "labelKey": "help_topics.search",
+        "file": "search.md"
+      },
+      {
+        "id": "multi-rename",
+        "label": "Multi-Rename Tool",
+        "labelKey": "help_topics.multi_rename",
+        "file": "multi_rename.md"
+      },
+      {
+        "id": "archives",
+        "label": "Working with Archives",
+        "labelKey": "help_topics.archives",
+        "file": "archives.md"
+      }
+    ]
+  },
+  {
+    "id": "config",
+    "label": "Configuration",
+    "labelKey": "help_topics.config",
+    "children": [
+      {
+        "id": "options",
+        "label": "Options & Settings",
+        "labelKey": "help_topics.options",
+        "file": "options.md"
+      },
+      {
+        "id": "themes",
+        "label": "Themes and Icons",
+        "labelKey": "help_topics.themes",
+        "file": "themes.md"
+      },
+      {
+        "id": "columns",
+        "label": "Custom Columns",
+        "labelKey": "help_topics.columns",
+        "file": "columns.md"
+      }
+    ]
+  },
+  {
+    "id": "shortcuts",
+    "label": "Keyboard Shortcuts",
+    "labelKey": "help_topics.shortcuts",
+    "file": "shortcuts.md"
+  }
+]

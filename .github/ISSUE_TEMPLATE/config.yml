@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Question / discussion
+    url: https://github.com/djawiz/NexusCommander/discussions
+    about: Usage questions, deployment help, or general discussion — not a bug or feature request.

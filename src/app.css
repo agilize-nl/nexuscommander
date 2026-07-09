@@ -1,0 +1,541 @@
+@import "tailwindcss";
+
+/* ===== NexusCommander Design System ===== */
+
+@theme {
+  --font-family-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+  --font-family-sans: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+:root,
+[data-theme="midnight"] {
+  /* Default: Midnight blue aesthetic */
+  --color-nc-bg-deep: #0a0e17;
+  --color-nc-bg: #101827;
+  --color-nc-bg-panel: #151d2e;
+  --color-nc-bg-alt: #18233a;
+  --color-nc-bg-header: #1a2440;
+  --color-nc-bg-hover: #1e2d4a;
+  --color-nc-bg-selected: #1d3461;
+  --color-nc-bg-active: #233d6e;
+  --color-nc-border: #263354;
+  --color-nc-border-bright: #3a5289;
+  --color-nc-text: #c8d6e5;
+  --color-nc-text-dim: #94a3b8;
+  --color-nc-text-bright: #f0f4f8;
+  --color-nc-accent: #4a9eff;
+  --color-nc-accent-dim: #2d6fcc;
+  --color-nc-accent-glow: #4a9eff33;
+  --color-nc-dir: #5bc0ff;
+  --color-nc-exec: #50fa7b;
+  --color-nc-archive: #ff79c6;
+  --color-nc-image: #bd93f9;
+  --color-nc-symlink: #8be9fd;
+  --color-nc-danger: #ff5555;
+  --color-nc-warning: #f1fa8c;
+  --color-nc-success: #50fa7b;
+
+  /* Fonts */
+  --font-main-name: var(--font-family-sans);
+  --font-main-size: 12px;
+  --font-menu-name: var(--font-main-name);
+  --font-menu-size: var(--font-main-size);
+  --font-drive-name: var(--font-main-name);
+  --font-drive-size: var(--font-main-size);
+  --font-tab-name: var(--font-main-name);
+  --font-tab-size: var(--font-main-size);
+  --font-header-name: var(--font-main-name);
+  --font-header-size: var(--font-main-size);
+  --font-pane-name: var(--font-main-name);
+  --font-pane-size: var(--font-main-size);
+}
+
+[data-theme="dracula"] {
+  --color-nc-bg-deep: #21222c;
+  --color-nc-bg: #282a36;
+  --color-nc-bg-panel: #282a36;
+  --color-nc-bg-alt: #2c2e3b;
+  --color-nc-bg-header: #44475a;
+  --color-nc-bg-hover: #44475a;
+  --color-nc-bg-selected: #6272a4;
+  --color-nc-bg-active: #bd93f9;
+  --color-nc-border: #44475a;
+  --color-nc-border-bright: #6272a4;
+  --color-nc-text: #f8f8f2;
+  --color-nc-text-dim: #6272a4;
+  --color-nc-text-bright: #ffffff;
+  --color-nc-accent: #bd93f9;
+  --color-nc-accent-dim: #8be9fd;
+  --color-nc-accent-glow: #bd93f933;
+  --color-nc-dir: #8be9fd;
+  --color-nc-exec: #50fa7b;
+  --color-nc-archive: #ffb86c;
+  --color-nc-image: #ff79c6;
+  --color-nc-symlink: #8be9fd;
+  --color-nc-danger: #ff5555;
+  --color-nc-warning: #f1fa8c;
+  --color-nc-success: #50fa7b;
+}
+
+[data-theme="solarized-dark"] {
+  --color-nc-bg-deep: #00212b;
+  --color-nc-bg: #002b36;
+  --color-nc-bg-panel: #073642;
+  --color-nc-bg-alt: #083a47;
+  --color-nc-bg-header: #073642;
+  --color-nc-bg-hover: #0a4655;
+  --color-nc-bg-selected: #0a4655;
+  --color-nc-bg-active: #586e75;
+  --color-nc-border: #0a4655;
+  --color-nc-border-bright: #586e75;
+  --color-nc-text: #839496;
+  --color-nc-text-dim: #586e75;
+  --color-nc-text-bright: #93a1a1;
+  --color-nc-accent: #268bd2;
+  --color-nc-accent-dim: #2aa198;
+  --color-nc-accent-glow: #268bd233;
+  --color-nc-dir: #268bd2;
+  --color-nc-exec: #859900;
+  --color-nc-archive: #cb4b16;
+  --color-nc-image: #d33682;
+  --color-nc-symlink: #2aa198;
+  --color-nc-danger: #dc322f;
+  --color-nc-warning: #b58900;
+  --color-nc-success: #859900;
+}
+
+[data-theme="gruvbox"] {
+  --color-nc-bg-deep: #1d2021;
+  --color-nc-bg: #282828;
+  --color-nc-bg-panel: #32302f;
+  --color-nc-bg-alt: #353331;
+  --color-nc-bg-header: #3c3836;
+  --color-nc-bg-hover: #504945;
+  --color-nc-bg-selected: #504945;
+  --color-nc-bg-active: #665c54;
+  --color-nc-border: #504945;
+  --color-nc-border-bright: #665c54;
+  --color-nc-text: #ebdbb2;
+  --color-nc-text-dim: #a89984;
+  --color-nc-text-bright: #fbf1c7;
+  --color-nc-accent: #83a598;
+  --color-nc-accent-dim: #458588;
+  --color-nc-accent-glow: #83a59833;
+  --color-nc-dir: #83a598;
+  --color-nc-exec: #b8bb26;
+  --color-nc-archive: #fe8019;
+  --color-nc-image: #d3869b;
+  --color-nc-symlink: #8ec07c;
+  --color-nc-danger: #cc241d;
+  --color-nc-warning: #d79921;
+  --color-nc-success: #b8bb26;
+}
+
+[data-theme="ocean"] {
+  --color-nc-bg-deep: #0f111a;
+  --color-nc-bg: #141721;
+  --color-nc-bg-panel: #1b1e2b;
+  --color-nc-bg-alt: #1e2230;
+  --color-nc-bg-header: #212534;
+  --color-nc-bg-hover: #292d3e;
+  --color-nc-bg-selected: #303548;
+  --color-nc-bg-active: #3e445e;
+  --color-nc-border: #292d3e;
+  --color-nc-border-bright: #3e445e;
+  --color-nc-text: #a6accd;
+  --color-nc-text-dim: #717cb4;
+  --color-nc-text-bright: #ffffff;
+  --color-nc-accent: #82aaff;
+  --color-nc-accent-dim: #4d80fc;
+  --color-nc-accent-glow: #82aaff33;
+  --color-nc-dir: #82aaff;
+  --color-nc-exec: #c3e88d;
+  --color-nc-archive: #f78c6c;
+  --color-nc-image: #c792ea;
+  --color-nc-symlink: #89ddff;
+  --color-nc-danger: #f07178;
+  --color-nc-warning: #ffcb6b;
+  --color-nc-success: #c3e88d;
+}
+ 
+[data-theme="nortonly"] {
+  --color-nc-bg-deep: #003870;
+  --color-nc-bg: #004080;
+  --color-nc-bg-panel: #004080;
+  --color-nc-bg-alt: #004a94;
+  --color-nc-bg-header: #005a5a;
+  --color-nc-bg-hover: #006e6e;
+  --color-nc-bg-selected: #005080;
+  --color-nc-bg-active: #006a6a;
+  --color-nc-border: #008080;
+  --color-nc-border-bright: #00aaaa;
+  --color-nc-text: #f8fafc;
+  --color-nc-text-dim: #d1dce8;
+  --color-nc-text-bright: #ffffff;
+  --color-nc-accent: #00aaaa;
+  --color-nc-accent-dim: #008080;
+  --color-nc-accent-glow: #00aaaa33;
+  --color-nc-dir: #00ffff;
+  --color-nc-exec: #50fa7b;
+  --color-nc-archive: #ff79c6;
+  --color-nc-image: #bd93f9;
+  --color-nc-symlink: #8be9fd;
+  --color-nc-danger: #ff5555;
+  --color-nc-warning: #f1fa8c;
+  --color-nc-success: #50fa7b;
+}
+
+/* Light Themes */
+
+[data-theme="github-light"] {
+  --color-nc-bg-deep: #ffffff;
+  --color-nc-bg: #ffffff;
+  --color-nc-bg-panel: #ffffff;
+  --color-nc-bg-alt: #f9fbfc;
+  --color-nc-bg-header: #f3f4f6;
+  --color-nc-bg-hover: #f3f4f6;
+  --color-nc-bg-selected: #ddf4ff;
+  --color-nc-bg-active: #b6e3ff;
+  --color-nc-border: #d0d7de;
+  --color-nc-border-bright: #bcbec4;
+  --color-nc-text: #24292f;
+  --color-nc-text-dim: #57606a;
+  --color-nc-text-bright: #000000;
+  --color-nc-accent: #0969da;
+  --color-nc-accent-dim: #54aeff;
+  --color-nc-accent-glow: #0969da33;
+  --color-nc-dir: #0969da;
+  --color-nc-exec: #1a7f37;
+  --color-nc-archive: #cf222e;
+  --color-nc-image: #8250df;
+  --color-nc-symlink: #0550ae;
+  --color-nc-danger: #cf222e;
+  --color-nc-warning: #9a6700;
+  --color-nc-success: #1a7f37;
+}
+
+[data-theme="solarized-light"] {
+  --color-nc-bg-deep: #ffffff;
+  --color-nc-bg: #eee8d5;
+  --color-nc-bg-panel: #fdf6e3;
+  --color-nc-bg-alt: #faf3cd;
+  --color-nc-bg-header: #eee8d5;
+  --color-nc-bg-hover: #e0d9c6;
+  --color-nc-bg-selected: #e0d9c6;
+  --color-nc-bg-active: #d0c8b6;
+  --color-nc-border: #d0c8b6;
+  --color-nc-border-bright: #93a1a1;
+  --color-nc-text: #657b83;
+  --color-nc-text-dim: #93a1a1;
+  --color-nc-text-bright: #073642;
+  --color-nc-accent: #268bd2;
+  --color-nc-accent-dim: #2aa198;
+  --color-nc-accent-glow: #268bd233;
+  --color-nc-dir: #268bd2;
+  --color-nc-exec: #859900;
+  --color-nc-archive: #cb4b16;
+  --color-nc-image: #d33682;
+  --color-nc-symlink: #2aa198;
+  --color-nc-danger: #dc322f;
+  --color-nc-warning: #b58900;
+  --color-nc-success: #859900;
+}
+
+[data-theme="gruvbox-light"] {
+  --color-nc-bg-deep: #ffffff;
+  --color-nc-bg: #ebdbb2;
+  --color-nc-bg-panel: #f9f5d7;
+  --color-nc-bg-alt: #f2edcd;
+  --color-nc-bg-header: #ebdbb2;
+  --color-nc-bg-hover: #d5c4a1;
+  --color-nc-bg-selected: #d5c4a1;
+  --color-nc-bg-active: #bdae93;
+  --color-nc-border: #d5c4a1;
+  --color-nc-border-bright: #bdae93;
+  --color-nc-text: #3c3836;
+  --color-nc-text-dim: #7c6f64;
+  --color-nc-text-bright: #282828;
+  --color-nc-accent: #458588;
+  --color-nc-accent-dim: #83a598;
+  --color-nc-accent-glow: #45858833;
+  --color-nc-dir: #458588;
+  --color-nc-exec: #98971a;
+  --color-nc-archive: #d65d0e;
+  --color-nc-image: #b16286;
+  --color-nc-symlink: #689d6a;
+  --color-nc-danger: #cc241d;
+  --color-nc-warning: #d79921;
+  --color-nc-success: #98971a;
+}
+
+[data-theme="catppuccin-latte"] {
+  --color-nc-bg-deep: #ffffff;
+  --color-nc-bg: #e6e9ef;
+  --color-nc-bg-panel: #e6e9ef;
+  --color-nc-bg-alt: #e0e3ea;
+  --color-nc-bg-header: #ccd0da;
+  --color-nc-bg-hover: #ccd0da;
+  --color-nc-bg-selected: #bcc0cc;
+  --color-nc-bg-active: #acb0be;
+  --color-nc-border: #bcc0cc;
+  --color-nc-border-bright: #acb0be;
+  --color-nc-text: #4c4f69;
+  --color-nc-text-dim: #7c7f93;
+  --color-nc-text-bright: #202028;
+  --color-nc-accent: #1e66f5;
+  --color-nc-accent-dim: #7287fd;
+  --color-nc-accent-glow: #1e66f533;
+  --color-nc-dir: #1e66f5;
+  --color-nc-exec: #40a02b;
+  --color-nc-archive: #fe640b;
+  --color-nc-image: #8839ef;
+  --color-nc-symlink: #209fb5;
+  --color-nc-danger: #d20f39;
+  --color-nc-warning: #df8e1d;
+  --color-nc-success: #40a02b;
+}
+
+[data-theme="arctic-light"] {
+  --color-nc-bg-deep: #ffffff;
+  --color-nc-bg: #e5e9f0;
+  --color-nc-bg-panel: #e5e9f0;
+  --color-nc-bg-alt: #dfe3ea;
+  --color-nc-bg-header: #d8dee9;
+  --color-nc-bg-hover: #d8dee9;
+  --color-nc-bg-selected: #c3ccd8;
+  --color-nc-bg-active: #b0bdcb;
+  --color-nc-border: #c3ccd8;
+  --color-nc-border-bright: #b0bdcb;
+  --color-nc-text: #4c566a;
+  --color-nc-text-dim: #434c5e;
+  --color-nc-text-bright: #2e3440;
+  --color-nc-accent: #5e81ac;
+  --color-nc-accent-dim: #81a1c1;
+  --color-nc-accent-glow: #5e81ac33;
+  --color-nc-dir: #5e81ac;
+  --color-nc-exec: #a3be8c;
+  --color-nc-archive: #d08770;
+  --color-nc-image: #b48ead;
+  --color-nc-symlink: #88c0d0;
+  --color-nc-danger: #bf616a;
+  --color-nc-warning: #ebcb8b;
+  --color-nc-success: #a3be8c;
+}
+
+/* ===== Overlay blur (mobile GPU cost) =====
+   backdrop-filter: blur() is expensive on mobile GPUs. On small screens or
+   when the user prefers reduced transparency, disable it; overlay components
+   fall back to a more opaque background via var(--nc-overlay-blur, blur(...)). */
+@media (max-width: 768px), (prefers-reduced-transparency: reduce) {
+  :root { --nc-overlay-blur: none; }
+}
+
+/* ===== Global Reset ===== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-main-name);
+  font-size: var(--font-main-size);
+  line-height: 1.4;
+  background: var(--color-nc-bg-deep);
+  color: var(--color-nc-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  cursor: default;
+}
+
+/* ===== Scrollbar Styling ===== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-nc-bg-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-nc-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-nc-border-bright);
+}
+
+/* ===== Selection ===== */
+::selection {
+  background: transparent !important;
+}
+
+/* ===== Drag & Drop Cursors Fix ===== */
+[draggable="true"] {
+  cursor: grab;
+}
+
+[draggable="true"]:active {
+  cursor: grabbing;
+}
+
+/* Helping the browser map drag effects to system cursors */
+.dragging-copy {
+  cursor: copy !important;
+}
+
+.dragging-move {
+  cursor: move !important;
+}
+
+.dragging-none {
+  cursor: no-drop !important;
+}
+
+@media (hover: none), (pointer: coarse) {
+  :root {
+    --nc-touch-target-min: 44px;
+  }
+
+  :where(.toolbar-btn, .up-btn, .op-btn, .fkey-btn, .col-header, .menu-item, .close-btn, .new-tab-btn) {
+    min-width: var(--nc-touch-target-min) !important;
+    min-height: var(--nc-touch-target-min) !important;
+  }
+
+  :where(.file-list, .help-body, .search-results, .results-container, .viewer-body, .text-viewer, .hex-viewer, .modal-body, .dialog-body) {
+    overscroll-behavior: contain;
+  }
+}
+
+/* ===== Mobile Dialog Safety Net =====
+   Keep desktop-sized dialogs inside small viewports and keep action buttons
+   reachable. This deliberately targets the shared modal class names used across
+   components while only activating on phones or short screens. */
+@media (max-width: 700px), (max-height: 560px) {
+  :where(.modal-backdrop, .modal-overlay, .dialog-overlay, .help-overlay, .viewer-overlay) {
+    align-items: flex-start !important;
+    justify-content: center !important;
+    padding: max(8px, env(safe-area-inset-top)) max(8px, env(safe-area-inset-right)) max(8px, env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-left)) !important;
+    overflow: auto !important;
+  }
+
+  :where(.modal, .modal-box, .modal-content, .dialog-box, .help-modal, .viewer-container, .task-card) {
+    width: min(100%, calc(100vw - 16px)) !important;
+    min-width: 0 !important;
+    max-width: calc(100vw - 16px) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: calc(100dvh - 16px) !important;
+    transform: none !important;
+    inset: auto !important;
+    margin: 0 auto !important;
+  }
+
+  :where(.modal, .modal-box, .modal-content, .dialog-box, .help-modal, .viewer-container) {
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+  }
+
+  :where(.modal-header, .dialog-header, .help-header, .viewer-header) {
+    flex-shrink: 0 !important;
+    min-height: 42px !important;
+    padding: 8px 10px !important;
+  }
+
+  :where(.modal-body, .dialog-body, .main-content, .help-body, .viewer-body, .content-area, .panel-body) {
+    min-height: 0 !important;
+    overflow: auto !important;
+  }
+
+  :where(.main-content, .help-body) {
+    flex-direction: column !important;
+  }
+
+  :where(.sidebar, .help-sidebar) {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    max-height: 132px !important;
+    overflow: auto !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--color-nc-border) !important;
+  }
+
+  :where(.modal-footer, .dialog-footer, .footer, .help-footer, .viewer-footer, .card-footer, .classic-choice-footer, .options-footer) {
+    flex-shrink: 0 !important;
+    position: sticky !important;
+    bottom: 0 !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-end !important;
+    gap: 8px !important;
+    padding: 8px 10px !important;
+    background: var(--color-nc-bg-panel) !important;
+    z-index: 2 !important;
+  }
+
+  :where(.footer-left, .footer-right, .footer-center, .modal-actions, .viewer-actions, .fallback-actions, .row-actions, .actions, .conflict-actions) {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    min-width: 0 !important;
+    gap: 8px !important;
+  }
+
+  :where(.footer-spacer) {
+    display: none !important;
+  }
+
+  :where(button, .btn, .icon-btn) {
+    max-width: 100% !important;
+    white-space: normal !important;
+  }
+
+  :where(input, select, textarea, .input-element, .dialog-input, .path-input) {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  :where(.grid-layout, .options-grid, .form-grid) {
+    grid-template-columns: 1fr !important;
+  }
+
+  :where(table, .columns-table) {
+    min-width: 560px;
+  }
+
+  :where(.columns-table) {
+    display: block !important;
+    overflow-x: auto !important;
+  }
+}
+
+@media (max-width: 420px) {
+  :where(.modal-backdrop, .modal-overlay, .dialog-overlay, .help-overlay, .viewer-overlay) {
+    padding: 4px !important;
+  }
+
+  :where(.modal, .modal-box, .modal-content, .dialog-box, .help-modal, .viewer-container, .task-card) {
+    width: calc(100vw - 8px) !important;
+    max-width: calc(100vw - 8px) !important;
+    max-height: calc(100dvh - 8px) !important;
+  }
+
+  :where(.modal-footer, .dialog-footer, .footer, .help-footer, .viewer-footer, .card-footer, .classic-choice-footer, .options-footer) {
+    justify-content: stretch !important;
+  }
+
+  :where(.modal-footer button, .dialog-footer button, .footer button, .help-footer button, .viewer-footer button, .classic-choice-footer button, .options-footer button) {
+    flex: 1 1 auto !important;
+    min-height: 44px !important;
+    justify-content: center !important;
+  }
+}

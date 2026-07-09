@@ -1,0 +1,54 @@
+{
+  "name": "NexusCommander",
+  "short_name": "NexusCmd",
+  "description": "Powerful dual-pane file manager for ChromeOS with advanced navigation and management features.",
+  "start_url": "/",
+  "id": "/",
+  "display": "standalone",
+  "background_color": "#0a0e17",
+  "theme_color": "#101827",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/main.png",
+      "sizes": "1440x900",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Dual-pane file management in Midnight theme"
+    },
+    {
+      "src": "/screenshots/shortcuts.png",
+      "sizes": "1440x900",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Integrated command-line shortcuts"
+    }
+  ],
+  "categories": ["productivity", "utilities"],
+  "shortcuts": [
+    {
+      "name": "Open Left Panel",
+      "url": "/?panel=left",
+      "description": "Open NexusCommander focused on the left panel"
+    },
+    {
+      "name": "Open Right Panel",
+      "url": "/?panel=right",
+      "description": "Open NexusCommander focused on the right panel"
+    }
+  ],
+  "display_override": ["window-controls-overlay", "minimal-ui"]
+}

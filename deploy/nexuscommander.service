@@ -1,0 +1,20 @@
+[Unit]
+Description=NexusCommander
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# Run as the account whose files NexusCommander should manage;
+# the backend gets exactly this user's file system rights.
+User=nexus
+Group=nexus
+WorkingDirectory=/opt/NexusCommander
+Environment=NODE_ENV=production
+EnvironmentFile=-/opt/NexusCommander/.env
+ExecStart=/usr/bin/node server/index.js
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

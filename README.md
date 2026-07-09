@@ -2,7 +2,7 @@
 
 A web-native, dual-pane (orthodox) file manager. SvelteKit frontend, Express backend, installable as a PWA — no Electron.
 
-![NexusCommander main window](static/screenshots/main.png)
+[![NexusCommander dual-pane browsing demo](docs/media/screenshots/dual-pane-browsing.png)](docs/media/demo-videos/01-dual-pane-browsing.mp4)
 
 ## The Origin Story
 
@@ -28,7 +28,15 @@ Nexus Commander is a dual-pane file manager with a SvelteKit frontend and an Exp
 - **PWA**: installable as a standalone app window (ChromeOS, Linux, desktop Chrome, Android), Window Controls Overlay support, offline-capable UI shell
 - **Mobile & touch**: responsive layout with touch-optimized interactions (tap to open, touch multi-select, safe-area support) — manage your server's files from a phone or tablet browser, or install it to your home screen (tested on Android; iOS not yet tested)
 
-![Keyboard shortcuts](static/screenshots/shortcuts.png)
+## See It in Action
+
+Click a preview to watch the short demo.
+
+| Core workflow | Themes |
+| --- | --- |
+| [![Dual-pane browsing](docs/media/screenshots/dual-pane-browsing.png)](docs/media/demo-videos/01-dual-pane-browsing.mp4)<br>**Dual-pane browsing** | [![Light themes](docs/media/screenshots/light-themes.png)](docs/media/demo-videos/04-light-themes.mp4)<br>**Light theme gallery** |
+| [![Copy files with F5](docs/media/screenshots/copy-with-f5.png)](docs/media/demo-videos/02-copy-with-f5.mp4)<br>**Copy files with F5** | [![Light mode in use](docs/media/screenshots/light-mode-in-use.png)](docs/media/demo-videos/05-light-mode-in-use.mp4)<br>**Light mode in use** |
+| [![Browse archives as folders](docs/media/screenshots/archives-as-folders.png)](docs/media/demo-videos/03-archives-as-folders.mp4)<br>**Browse archives as folders** | [![Dark themes](docs/media/screenshots/dark-themes.png)](docs/media/demo-videos/06-dark-themes.mp4)<br>**Dark theme gallery** |
 
 ## Stack
 

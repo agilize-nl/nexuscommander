@@ -38,6 +38,10 @@ Click a preview to watch the short demo.
 | [![Copy files with F5](docs/media/screenshots/copy-with-f5.png)](docs/media/demo-videos/02-copy-with-f5.mp4)<br>**Copy files with F5** | [![Light mode in use](docs/media/screenshots/light-mode-in-use.png)](docs/media/demo-videos/05-light-mode-in-use.mp4)<br>**Light mode in use** |
 | [![Browse archives as folders](docs/media/screenshots/archives-as-folders.png)](docs/media/demo-videos/03-archives-as-folders.mp4)<br>**Browse archives as folders** | [![Dark themes](docs/media/screenshots/dark-themes.png)](docs/media/demo-videos/06-dark-themes.mp4)<br>**Dark theme gallery** |
 
+### Nortonly Dark Theme
+
+[![NexusCommander using the Nortonly dark theme](docs/media/screenshots/nortonly.png)](docs/media/demo-videos/06-dark-themes.mp4)
+
 ## Stack
 
 - frontend: Svelte 5 (Runes), SvelteKit, Vite, Tailwind CSS v4

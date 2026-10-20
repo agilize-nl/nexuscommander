@@ -1,76 +1,52 @@
-# NexusCommander (monorepo)
+# NexusCommander
 
-Eén repo met een **gedeelde Svelte-frontend** die twee shells voedt.
+NexusCommander is a dual-pane file manager with a shared Svelte frontend for a
+native Tauri desktop app and a browser-based PWA.
 
-[![NexusCommander 0.9.17 — dubbele panelen met het Midnight-thema](apps/web/docs/media/screenshots/dual-pane-browsing.png)](apps/web/docs/media/screenshots/dual-pane-browsing.png)
+[![NexusCommander 0.9.17 — dual-pane browsing in the Midnight theme](apps/web/docs/media/screenshots/dual-pane-browsing.png)](apps/web/docs/media/screenshots/dual-pane-browsing.png)
 
-Actuele screenshots van de webversie **0.9.17**, met demonstratiebestanden. Klik op een afbeelding voor het volledige formaat.
+These screenshots show version **0.9.17** with demonstration files. Select an
+image to view it at full size.
 
-| Bestandsbeheer | Thema's |
+| File management | Themes |
 | --- | --- |
-| [![Kopiëren met F5](apps/web/docs/media/screenshots/copy-with-f5.png)](apps/web/docs/media/screenshots/copy-with-f5.png)<br>Kopiëren met F5 | [![GitHub Light](apps/web/docs/media/screenshots/light-themes.png)](apps/web/docs/media/screenshots/light-themes.png)<br>GitHub Light |
-| [![ZIP-archief als map openen](apps/web/docs/media/screenshots/archives-as-folders.png)](apps/web/docs/media/screenshots/archives-as-folders.png)<br>Archieven als mappen | [![Dracula](apps/web/docs/media/screenshots/dark-themes.png)](apps/web/docs/media/screenshots/dark-themes.png)<br>Dracula |
+| [![Copying files with F5](apps/web/docs/media/screenshots/copy-with-f5.png)](apps/web/docs/media/screenshots/copy-with-f5.png)<br>Copying files with F5 | [![GitHub Light](apps/web/docs/media/screenshots/light-themes.png)](apps/web/docs/media/screenshots/light-themes.png)<br>GitHub Light |
+| [![Browsing a ZIP archive as a folder](apps/web/docs/media/screenshots/archives-as-folders.png)](apps/web/docs/media/screenshots/archives-as-folders.png)<br>Archives as folders | [![Dracula](apps/web/docs/media/screenshots/dark-themes.png)](apps/web/docs/media/screenshots/dark-themes.png)<br>Dracula |
 
-[Alle screenshots en thema's →](apps/web/README.md#see-it-in-action)
+[View all screenshots and themes →](apps/web/README.md#see-it-in-action)
 
-## Monorepo
+## Architecture
 
 ```
 NexusCommander/
-├── packages/
-│   └── ui/            @nexus/ui — gedeelde frontend (transport-agnostisch)
-│       └── src/lib/   ipc-contract.ts (NexusIpc) · ipc-registry.ts (getIpc/setIpc)
-│                      ipc.ts (shim) · types.ts · stores.ts · i18n.ts · theme.ts
-│                      utils.ts · iconMap.ts · plugin-api.ts · playerStore.ts · locales/
-├── apps/
-│   ├── desktop/       Tauri-shell (Rust-backend) — Linux/macOS/Windows
-│   │   ├── src/lib/ipc.ts      invoke()-adapter (implements NexusIpc)
-│   │   └── src-tauri/          Rust-backend
-│   └── web/           SvelteKit + Express-shell (PWA)
-│       ├── src/lib/ipc.ts      fetch()-adapter (implements NexusIpc)
-│       └── server/             Express-backend
-└── docs/
+├── packages/ui/       Shared Svelte UI and the NexusIpc contract
+├── apps/desktop/      Tauri shell with a Rust backend
+└── apps/web/          SvelteKit and Express PWA shell
 ```
 
-## Architectuur in één alinea
+The shared UI communicates only through the `NexusIpc` contract. Each shell
+provides its own adapter, so platform-specific behavior stays at the boundary
+between the interface and its backend.
 
-De gedeelde UI kent alleen het **`NexusIpc`-contract** ([packages/ui/src/lib/ipc-contract.ts](packages/ui/src/lib/ipc-contract.ts)). Elke app levert bij opstart zijn adapter via `setIpc(...)`; gedeelde componenten roepen `getIpc()` aan. Zo draait dezelfde componentboom op Tauri (`invoke`) én web (`fetch`). Platformverschillen zitten achter capability-detectie (`getIpc().setFileProperties?.(…)`), niet verspreid door de UI. **Backends worden nooit gedeeld** — zie [docs/archive/BACKENDS_EN_SECURITY.md](docs/archive/BACKENDS_EN_SECURITY.md).
+## Features
 
-## Commando's (npm workspaces)
+- Dual-pane browsing with tabs, breadcrumbs, keyboard shortcuts and touch support
+- Copy, move, rename and delete operations with background progress and conflict handling
+- ZIP, TAR, 7Z and RAR archives browsed as virtual folders
+- Built-in text, image, PDF, audio and video viewers
+- Search, multi-rename, directory comparison, file split/combine and bookmarks
+- Dark and light themes, icon sets and English, Dutch, German, French, Spanish and Portuguese interfaces
+- Installable PWA and native desktop builds for Linux, macOS and Windows
+
+## Development
 
 ```bash
-npm install                 # installeert alle workspaces (packages/ui gesymlinkt)
-
-npm run dev:desktop         # tauri dev
-npm run dev:web             # vite dev + express (concurrently)
-
-npm run build               # bouwt beide apps
-npm run build:desktop       # alleen desktop-frontend (vite)
-npm run build:windows       # Windows-setup (.exe, NSIS)
-npm run build:web           # alleen web
-npm run tauri -- build      # Tauri-bundle (Linux/macOS/Windows)
-
-npm run check               # svelte-check beide apps
+npm install
+npm run dev:desktop
+npm run dev:web
+npm run check
+npm run build
 ```
 
-Rust-backend checken: `cd apps/desktop/src-tauri && cargo check`.
-
-Voor een installeerbare Windows-versie: zie
-[apps/desktop/docs/WINDOWS_INSTALL.md](apps/desktop/docs/WINDOWS_INSTALL.md).
-
-## Status
-
-**Deze repo is het implementatiedoel.** De losse desktop-repo
-(`_Apps/NexusCommander`) is bevroren — zie [docs/REPO_STATUS.md](docs/REPO_STATUS.md).
-
-Fases 0–8 van de migratie zijn afgerond: 24 gedeelde `.svelte`-componenten, de
-gedeelde niet-visuele logica (ipc-contract/shim, types, stores, i18n-loader, utils,
-theme, iconMap, plugin-api, playerStore) staat in `@nexus/ui`, de locales zijn
-geünificeerd en CI bouwt op Linux, macOS en Windows.
-
-Nog open in Fase 9: de Svelte-reconciliatie van desktop-release v0.8.34, de
-handmatige visuele regressietest, en het archiveren van de oude repo. Alle details
-en de per-bestand-inventaris staan in [docs/REPO_STATUS.md](docs/REPO_STATUS.md).
-
-Kwaliteit en veiligheid: [docs/COMPREHENSIVE_QUALITY_SAFETY_UPGRADE_PLAN_2026-07-28.md](docs/COMPREHENSIVE_QUALITY_SAFETY_UPGRADE_PLAN_2026-07-28.md)
-is de huidige baseline. Behandel releases tot en met Fase 2 daarvan als preview.
+See [the web application guide](apps/web/README.md) for web/PWA setup and
+contribution details.

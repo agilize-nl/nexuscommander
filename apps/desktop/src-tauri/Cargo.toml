@@ -1,0 +1,66 @@
+[package]
+name = "nexuscommander"
+version = "0.9.17"
+description = "A cross-platform, high-performance orthodox file manager."
+authors = ["djawiz"]
+license = "MIT"
+default-run = "nexuscommander"
+edition = "2021"
+
+[lib]
+name = "nexuscommander_lib"
+crate-type = ["rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["image-png"] }
+tauri-plugin-opener = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+encoding_rs = "0.8"
+dirs = "6"
+# Phase 3: Archive handling
+zip = "9"
+flate2 = "1"
+tar = "0.4"
+xz2 = "0.1"
+bzip2 = "0.4"
+zstd = { version = "0.13", features = ["zstdmt"] }
+# Phase 3: Task queue
+uuid = { version = "1", features = ["v4"] }
+# Phase 4: Search & filtering
+walkdir = "2"
+jwalk = "0.8"
+regex = "1"
+chrono = "0.4"
+lazy_static = "1.4"
+rust-ini = "0.21.3"
+notify = "6.1.1"
+filetime = "0.2"
+num_cpus = "1"
+trash = "5.1"
+tokio = { version = "1", features = ["time"] }
+
+# ===== Platform-gated dependencies (Fase 8.1 — enables the Windows build target) =====
+# Windows-only: logical-drive enumeration (GetLogicalDriveStringsW / GetDriveTypeW).
+[target.'cfg(windows)'.dependencies]
+winapi = { version = "0.3", features = ["fileapi", "winbase"] }
+
+# Unix-only: POSIX users/groups (uzers) and euid check (libc).
+[target.'cfg(unix)'.dependencies]
+uzers = "0.12"
+libc = "0.2"
+
+# rfd's Linux backend needs the gtk3 feature; other platforms use the default backend.
+# glib backs install_gtk_noise_filter() in lib.rs, which suppresses three cosmetic
+# "Unable to load dnd-* from the cursor theme" GDK messages. Ported from desktop
+# 0.8.34 during the Fase 9 reconciliation. See QSF-019: this is the only direct glib
+# use left, so dropping the filter would remove the dependency entirely.
+[target.'cfg(target_os = "linux")'.dependencies]
+rfd = { version = "0.15", default-features = false, features = ["gtk3"] }
+glib = "0.18.5"
+
+[target.'cfg(not(target_os = "linux"))'.dependencies]
+rfd = "0.15"

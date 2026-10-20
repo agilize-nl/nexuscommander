@@ -1,0 +1,31 @@
+# NexusCommander reverse proxy.
+#
+# The backend behind this proxy authenticates nobody. It is bound to loopback
+# (NC_HOST=127.0.0.1, see .env.example) precisely so that this file is the only
+# way in — which makes authentication *here* the whole access control for the
+# deployment, not a hardening extra. Without it, anyone who reaches port 8080
+# reads and writes every file the service user can.
+#
+# NC_BASIC_AUTH_USER and NC_BASIC_AUTH_HASH come from /etc/caddy/nexuscommander.env,
+# which deploy/proxmox/sync-repo-to-ct-188.sh installs a systemd drop-in for.
+# Generate the hash with:
+#
+#     caddy hash-password --plaintext '<password>'
+#
+# Caddy refuses to load a config whose placeholders are empty, so a missing
+# credentials file fails the deploy instead of quietly serving an open proxy.
+:8080 {
+    encode zstd gzip {
+        match {
+            not path /api/fs/raw* /api/preview/*
+        }
+    }
+
+    basic_auth {
+        {$NC_BASIC_AUTH_USER} {$NC_BASIC_AUTH_HASH}
+    }
+
+    reverse_proxy 127.0.0.1:3721 {
+        flush_interval -1
+    }
+}

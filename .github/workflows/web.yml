@@ -1,0 +1,38 @@
+name: web (PWA) build
+
+# Builds and type-checks apps/web from the monorepo. Deployment stays with the
+# existing apps/web/deploy.sh (needs host secrets) and is not run here.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/web/**"
+      - "packages/**"
+      - ".github/workflows/web.yml"
+  pull_request:
+    paths:
+      - "apps/web/**"
+      - "packages/**"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install workspace dependencies
+        run: npm ci
+
+      - name: Type-check
+        run: npm run check --workspace apps/web
+
+      - name: Build
+        run: npm run build --workspace apps/web

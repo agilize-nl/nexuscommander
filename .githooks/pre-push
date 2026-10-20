@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# QSF plan P0.4 — run the full gate set before anything leaves this machine.
+#
+# Enable with:  git config core.hooksPath .githooks
+#
+# Deliberately a plain shell hook rather than husky: the gate set is mostly
+# cargo, so a Node dependency to invoke it would be the wrong shape, and one
+# fewer install step means one fewer reason for the hook to be missing.
+#
+# Bypass with `git push --no-verify` only when you know why. Note QSF-021: the
+# release path currently runs no tests at all, so this hook is the only thing
+# between a broken tree and a published artifact.
+
+exec "$(git rev-parse --show-toplevel)/scripts/verify.sh"

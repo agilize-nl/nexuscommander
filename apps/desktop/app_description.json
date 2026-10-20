@@ -1,0 +1,77 @@
+{
+  "name": "NexusCommander",
+  "description": "A cross-platform, high-performance orthodox (dual-pane) file manager built with Tauri and SvelteKit.",
+  "tech_stack": {
+    "frontend": {
+      "framework": "SvelteKit",
+      "ui_library": "Svelte 5 (Runes)",
+      "bundler": "Vite 6",
+      "language": "TypeScript",
+      "styling": "Tailwind CSS v4 (Vanilla CSS fallback)",
+      "icons": "lucide-svelte"
+    },
+    "backend": {
+      "framework": "Tauri v2",
+      "language": "Rust (Edition 2021)",
+      "plugins": [
+        "tauri-plugin-opener"
+      ],
+      "key_libraries": [
+        "serde (serialization)",
+        "dirs (path resolution)",
+        "zip, flate2, tar (archive handling)",
+        "uuid (task identification)",
+        "base64 (viewer encoding)",
+        "walkdir (recursive ops)",
+        "regex (search/filtering)",
+        "chrono (time formatting)",
+        "rust-ini (settings storage)",
+        "users (owner/group resolution)"
+      ]
+    }
+  },
+  "functionality": {
+    "core_ui": [
+      "TwinPanels: Orthodox dual-pane interface with vertical/horizontal split toggles",
+      "Tabbed Navigation: Multiple folder tabs per panel",
+      "MenuBar & Toolbar: Home, Up, Refresh, View Mode toggles, and Search",
+      "CommandLine: Direct execution of shell commands and internal VFS commands (e.g., cd)",
+      "FunctionKeyBar: TC-style F3 (View) to F10 (Exit) quick actions",
+      "TaskProgress: Visual tracking of background file operations",
+      "Breadcrumbs: Interactive path navigation for each panel"
+    ],
+    "virtual_file_system": [
+      "High-performance directory reading with symlink detection",
+      "Cross-platform drive/mount point discovery",
+      "Recursive directory size calculation (Spacebar toggle)",
+      "Directory comparison (Sync selection between panels)"
+    ],
+    "file_operations": [
+      "CRUD: Robust creation, deletion (recursive), renaming, and moves",
+      "Multi-Rename Tool: Batch renaming with pattern support",
+      "Drag & Drop: Future target (currently mediated via F-keys/toolbar)",
+      "Selection Management: TC-style selection (Insert, Space, Gray +, Gray -)"
+    ],
+    "archive_handling": [
+      "Transparent VFS: Browse ZIP/TAR/GZ archives like standard folders",
+      "Pack/Unpack: native archive creation and extraction support (Alt+F5, Alt+F9)"
+    ],
+    "task_queue_manager": [
+      "Asynchronous background operations for long-running Copy/Move/Delete tasks",
+      "Concurrency: Manage and monitor multiple tasks via stateful queue",
+      "Error Handling: Robust reporting and task cancellation"
+    ],
+    "built_in_viewer": [
+      "Multimodal Viewer: Text, Hex, and Image viewing support",
+      "Embedded Mode: QuickView toggle to view files in the opposite panel"
+    ],
+    "additional_features": [
+      "Hotlist/Bookmarks: Categorized favorites with persistent storage (Ctrl+D)",
+      "Advanced Search: File discovery with regex and content-query support",
+      "Terminal Integration: Instant terminal access in current directory (F9)",
+      "Network Support: Mapping and disconnecting network drives",
+      "Theme Engine: Comprehensive customization of colors, backgrounds, and typography"
+    ]
+  },
+  "status": "Phase 5 Complete - Core functionality fully implemented and verified on native backend."
+}

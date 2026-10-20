@@ -1,0 +1,776 @@
+@import "tailwindcss";
+
+/* ===== NexusCommander Design System ===== */
+
+@theme {
+  --font-family-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+  --font-family-sans: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+:root,
+[data-theme="midnight"] {
+  --font-family-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+  --font-family-sans: "Inter", "Segoe UI", system-ui, sans-serif;
+  /* Default: Midnight blue aesthetic */
+  --color-nc-bg-deep: #0a0e17;
+  --color-nc-bg: #101827;
+  --color-nc-bg-panel: #151d2e;
+  --color-nc-bg-alt: #18233a;
+  --color-nc-bg-header: #1a2440;
+  --color-nc-bg-hover: #1e2d4a;
+  --color-nc-bg-selected: #1d3461;
+  --color-nc-bg-active: #233d6e;
+  --color-nc-border: #263354;
+  --color-nc-border-bright: #3a5289;
+  --color-nc-text: #c8d6e5;
+  --color-nc-text-dim: #6b7fa0;
+  --color-nc-text-bright: #f0f4f8;
+  --color-nc-accent: #4a9eff;
+  --color-nc-accent-dim: #2d6fcc;
+  --color-nc-accent-glow: #4a9eff33;
+  --color-nc-dir: #5bc0ff;
+  --color-nc-exec: #50fa7b;
+  --color-nc-archive: #ff79c6;
+  --color-nc-image: #bd93f9;
+  --color-nc-symlink: #8be9fd;
+  --color-nc-danger: #ff5555;
+  --color-nc-marked: color-mix(in srgb, var(--color-nc-danger) 70%, white);
+  --color-nc-warning: #f1fa8c;
+  --color-nc-success: #50fa7b;
+  --color-nc-tab-bg: #111a2b;
+  --color-nc-tab-border: #2d3c62;
+  --color-nc-tab-text: #aebfda;
+  --color-nc-tab-hover-bg: #1a2742;
+  --color-nc-tab-hover-text: #f0f4f8;
+  --color-nc-tab-active-bg: #1c2944;
+  --color-nc-tab-active-border: #3a5289;
+  --color-nc-tab-active-text: #ffffff;
+  --color-nc-drive-bg: #111a2b;
+  --color-nc-drive-border: #2d3c62;
+  --color-nc-drive-text: #b8c7df;
+  --color-nc-drive-hover-bg: #1a2742;
+  --color-nc-drive-hover-border: #3a5289;
+  --color-nc-drive-hover-text: #f0f4f8;
+  --color-nc-drive-active-bg: #1c2944;
+  --color-nc-drive-active-text: #ffffff;
+  --color-nc-drive-local-border: #2d3c62;
+  --color-nc-drive-local-icon: #5bc0ff;
+  --color-nc-drive-local-active-border: #5bc0ff;
+  --color-nc-drive-network-bg: #102235;
+  --color-nc-drive-network-border: #245c91;
+  --color-nc-drive-network-icon: #60a5fa;
+  --color-nc-drive-network-active-border: #60a5fa;
+  --color-nc-drive-removable-bg: #0d1f18;
+  --color-nc-drive-removable-border: #24513a;
+  --color-nc-drive-removable-icon: #4ade80;
+  --color-nc-drive-removable-active-border: #4ade80;
+
+  /* Fonts */
+  --font-main-name: var(--font-family-sans);
+  --font-main-size: 11px;
+  --font-menu-name: var(--font-main-name);
+  --font-menu-size: var(--font-main-size);
+  --font-drive-name: var(--font-main-name);
+  --font-drive-size: var(--font-main-size);
+  --font-tab-name: var(--font-main-name);
+  --font-tab-size: var(--font-main-size);
+  --font-header-name: var(--font-main-name);
+  --font-header-size: var(--font-main-size);
+  --font-pane-name: var(--font-main-name);
+  --font-pane-size: var(--font-main-size);
+  --font-status-name: var(--font-main-name);
+  --font-status-size: var(--font-main-size);
+  --font-editor-name: var(--font-family-mono);
+  --font-editor-size: 12px;
+  --font-viewer-name: var(--font-main-name);
+  --font-viewer-size: var(--font-main-size);
+
+  /* Derived layout metrics (updated by JS via applyConfig) */
+  --row-height: 18px;
+  --icon-size: 14px;
+}
+
+[data-theme="dracula"] {
+  --color-nc-bg-deep: #21222c;
+  --color-nc-bg: #282a36;
+  --color-nc-bg-panel: #282a36;
+  --color-nc-bg-alt: #2c2e3b;
+  --color-nc-bg-header: #44475a;
+  --color-nc-bg-hover: #44475a;
+  --color-nc-bg-selected: #6272a4;
+  --color-nc-bg-active: #bd93f9;
+  --color-nc-border: #44475a;
+  --color-nc-border-bright: #6272a4;
+  --color-nc-text: #f8f8f2;
+  --color-nc-text-dim: #6272a4;
+  --color-nc-text-bright: #ffffff;
+  --color-nc-accent: #bd93f9;
+  --color-nc-accent-dim: #8be9fd;
+  --color-nc-accent-glow: #bd93f933;
+  --color-nc-dir: #8be9fd;
+  --color-nc-exec: #50fa7b;
+  --color-nc-archive: #ffb86c;
+  --color-nc-image: #ff79c6;
+  --color-nc-symlink: #8be9fd;
+  --color-nc-danger: #ff5555;
+  --color-nc-marked: color-mix(in srgb, var(--color-nc-danger) 70%, white);
+  --color-nc-warning: #f1fa8c;
+  --color-nc-success: #50fa7b;
+  --color-nc-tab-bg: #2c2e3b;
+  --color-nc-tab-border: #4b4f66;
+  --color-nc-tab-text: #d7d7d0;
+  --color-nc-tab-hover-bg: #383a4a;
+  --color-nc-tab-hover-text: #ffffff;
+  --color-nc-tab-active-bg: #3f4154;
+  --color-nc-tab-active-border: #6272a4;
+  --color-nc-tab-active-text: #ffffff;
+  --color-nc-drive-bg: #2c2e3b;
+  --color-nc-drive-border: #4b4f66;
+  --color-nc-drive-text: #e2e2dc;
+  --color-nc-drive-hover-bg: #383a4a;
+  --color-nc-drive-hover-border: #6272a4;
+  --color-nc-drive-hover-text: #ffffff;
+  --color-nc-drive-active-bg: #3f4154;
+  --color-nc-drive-active-text: #ffffff;
+  --color-nc-drive-local-border: #4b4f66;
+  --color-nc-drive-local-icon: #8be9fd;
+  --color-nc-drive-local-active-border: #8be9fd;
+  --color-nc-drive-network-bg: #243044;
+  --color-nc-drive-network-border: #4b6b9b;
+  --color-nc-drive-network-icon: #8be9fd;
+  --color-nc-drive-network-active-border: #8be9fd;
+  --color-nc-drive-removable-bg: #1c2d24;
+  --color-nc-drive-removable-border: #2f5f40;
+  --color-nc-drive-removable-icon: #50fa7b;
+  --color-nc-drive-removable-active-border: #50fa7b;
+}
+
+[data-theme="solarized-dark"] {
+  --color-nc-bg-deep: #00212b;
+  --color-nc-bg: #002b36;
+  --color-nc-bg-panel: #073642;
+  --color-nc-bg-alt: #083a47;
+  --color-nc-bg-header: #073642;
+  --color-nc-bg-hover: #0a4655;
+  --color-nc-bg-selected: #0a4655;
+  --color-nc-bg-active: #586e75;
+  --color-nc-border: #0a4655;
+  --color-nc-border-bright: #586e75;
+  --color-nc-text: #839496;
+  --color-nc-text-dim: #586e75;
+  --color-nc-text-bright: #93a1a1;
+  --color-nc-accent: #268bd2;
+  --color-nc-accent-dim: #2aa198;
+  --color-nc-accent-glow: #268bd233;
+  --color-nc-dir: #268bd2;
+  --color-nc-exec: #859900;
+  --color-nc-archive: #cb4b16;
+  --color-nc-image: #d33682;
+  --color-nc-symlink: #2aa198;
+  --color-nc-danger: #dc322f;
+  --color-nc-marked: color-mix(in srgb, var(--color-nc-danger) 70%, white);
+  --color-nc-warning: #b58900;
+  --color-nc-success: #859900;
+  --color-nc-tab-bg: #073642;
+  --color-nc-tab-border: #164b57;
+  --color-nc-tab-text: #93a1a1;
+  --color-nc-tab-hover-bg: #0a4655;
+  --color-nc-tab-hover-text: #eee8d5;
+  --color-nc-tab-active-bg: #123f4b;
+  --color-nc-tab-active-border: #586e75;
+  --color-nc-tab-active-text: #fdf6e3;
+  --color-nc-drive-bg: #073642;
+  --color-nc-drive-border: #164b57;
+  --color-nc-drive-text: #93a1a1;
+  --color-nc-drive-hover-bg: #0a4655;
+  --color-nc-drive-hover-border: #586e75;
+  --color-nc-drive-hover-text: #eee8d5;
+  --color-nc-drive-active-bg: #123f4b;
+  --color-nc-drive-active-text: #fdf6e3;
+  --color-nc-drive-local-border: #164b57;
+  --color-nc-drive-local-icon: #268bd2;
+  --color-nc-drive-local-active-border: #268bd2;
+  --color-nc-drive-network-bg: #073b4c;
+  --color-nc-drive-network-border: #23627a;
+  --color-nc-drive-network-icon: #268bd2;
+  --color-nc-drive-network-active-border: #268bd2;
+  --color-nc-drive-removable-bg: #12342a;
+  --color-nc-drive-removable-border: #2f5638;
+  --color-nc-drive-removable-icon: #859900;
+  --color-nc-drive-removable-active-border: #859900;
+}
+
+[data-theme="gruvbox"] {
+  --color-nc-bg-deep: #1d2021;
+  --color-nc-bg: #282828;
+  --color-nc-bg-panel: #32302f;
+  --color-nc-bg-alt: #353331;
+  --color-nc-bg-header: #3c3836;
+  --color-nc-bg-hover: #504945;
+  --color-nc-bg-selected: #504945;
+  --color-nc-bg-active: #665c54;
+  --color-nc-border: #504945;
+  --color-nc-border-bright: #665c54;
+  --color-nc-text: #ebdbb2;
+  --color-nc-text-dim: #a89984;
+  --color-nc-text-bright: #fbf1c7;
+  --color-nc-accent: #83a598;
+  --color-nc-accent-dim: #458588;
+  --color-nc-accent-glow: #83a59833;
+  --color-nc-dir: #83a598;
+  --color-nc-exec: #b8bb26;
+  --color-nc-archive: #fe8019;
+  --color-nc-image: #d3869b;
+  --color-nc-symlink: #8ec07c;
+  --color-nc-danger: #cc241d;
+  --color-nc-marked: color-mix(in srgb, var(--color-nc-danger) 70%, white);
+  --color-nc-warning: #d79921;
+  --color-nc-success: #b8bb26;
+  --color-nc-tab-bg: #32302f;
+  --color-nc-tab-border: #504945;
+  --color-nc-tab-text: #d5c4a1;
+  --color-nc-tab-hover-bg: #3c3836;
+  --color-nc-tab-hover-text: #fbf1c7;
+  --color-nc-tab-active-bg: #45403d;
+  --color-nc-tab-active-border: #665c54;
+  --color-nc-tab-active-text: #fbf1c7;
+  --color-nc-drive-bg: #32302f;
+  --color-nc-drive-border: #504945;
+  --color-nc-drive-text: #d5c4a1;
+  --color-nc-drive-hover-bg: #3c3836;
+  --color-nc-drive-hover-border: #665c54;
+  --color-nc-drive-hover-text: #fbf1c7;
+  --color-nc-drive-active-bg: #45403d;
+  --color-nc-drive-active-text: #fbf1c7;
+  --color-nc-drive-local-border: #504945;
+  --color-nc-drive-local-icon: #83a598;
+  --color-nc-drive-local-active-border: #83a598;
+  --color-nc-drive-network-bg: #2d3b3a;
+  --color-nc-drive-network-border: #4d6860;
+  --color-nc-drive-network-icon: #83a598;
+  --color-nc-drive-network-active-border: #83a598;
+  --color-nc-drive-removable-bg: #283324;
+  --color-nc-drive-removable-border: #495833;
+  --color-nc-drive-removable-icon: #b8bb26;
+  --color-nc-drive-removable-active-border: #b8bb26;
+}
+
+[data-theme="ocean"] {
+  --color-nc-bg-deep: #0f111a;
+  --color-nc-bg: #141721;
+  --color-nc-bg-panel: #1b1e2b;
+  --color-nc-bg-alt: #1e2230;
+  --color-nc-bg-header: #212534;
+  --color-nc-bg-hover: #292d3e;
+  --color-nc-bg-selected: #303548;
+  --color-nc-bg-active: #3e445e;
+  --color-nc-border: #292d3e;
+  --color-nc-border-bright: #3e445e;
+  --color-nc-text: #a6accd;
+  --color-nc-text-dim: #717cb4;
+  --color-nc-text-bright: #ffffff;
+  --color-nc-accent: #82aaff;
+  --color-nc-accent-dim: #4d80fc;
+  --color-nc-accent-glow: #82aaff33;
+  --color-nc-dir: #82aaff;
+  --color-nc-exec: #c3e88d;
+  --color-nc-archive: #f78c6c;
+  --color-nc-image: #c792ea;
+  --color-nc-symlink: #89ddff;
+  --color-nc-danger: #f07178;
+  --color-nc-marked: color-mix(in srgb, var(--color-nc-danger) 70%, white);
+  --color-nc-warning: #ffcb6b;
+  --color-nc-success: #c3e88d;
+  --color-nc-tab-bg: #1b1e2b;
+  --color-nc-tab-border: #303548;
+  --color-nc-tab-text: #b7c0df;
+  --color-nc-tab-hover-bg: #292d3e;
+  --color-nc-tab-hover-text: #ffffff;
+  --color-nc-tab-active-bg: #303548;
+  --color-nc-tab-active-border: #3e445e;
+  --color-nc-tab-active-text: #ffffff;
+  --color-nc-drive-bg: #1b1e2b;
+  --color-nc-drive-border: #303548;
+  --color-nc-drive-text: #b7c0df;
+  --color-nc-drive-hover-bg: #292d3e;
+  --color-nc-drive-hover-border: #3e445e;
+  --color-nc-drive-hover-text: #ffffff;
+  --color-nc-drive-active-bg: #303548;
+  --color-nc-drive-active-text: #ffffff;
+  --color-nc-drive-local-border: #303548;
+  --color-nc-drive-local-icon: #82aaff;
+  --color-nc-drive-local-active-border: #82aaff;
+  --color-nc-drive-network-bg: #202942;
+  --color-nc-drive-network-border: #40558a;
+  --color-nc-drive-network-icon: #82aaff;
+  --color-nc-drive-network-active-border: #82aaff;
+  --color-nc-drive-removable-bg: #1d2a1d;
+  --color-nc-drive-removable-border: #3d5f35;
+  --color-nc-drive-removable-icon: #c3e88d;
+  --color-nc-drive-removable-active-border: #c3e88d;
+}
+ 
+[data-theme="nortonly"] {
+  --color-nc-bg-deep: #003870;
+  --color-nc-bg: #004080;
+  --color-nc-bg-panel: #004080;
+  --color-nc-bg-alt: #004a94;
+  --color-nc-bg-header: #008080;
+  --color-nc-bg-hover: #009090;
+  --color-nc-bg-selected: #009090;
+  --color-nc-bg-active: #00aaaa;
+  --color-nc-border: #008080;
+  --color-nc-border-bright: #00aaaa;
+  --color-nc-text: #f8fafc;
+  --color-nc-text-dim: #cbd5e1;
+  --color-nc-text-bright: #ffffff;
+  --color-nc-accent: #00aaaa;
+  --color-nc-accent-dim: #008080;
+  --color-nc-accent-glow: #00aaaa33;
+  --color-nc-dir: #00ffff;
+  --color-nc-exec: #50fa7b;
+  --color-nc-archive: #ff79c6;
+  --color-nc-image: #bd93f9;
+  --color-nc-symlink: #8be9fd;
+  --color-nc-danger: #ff5555;
+  --color-nc-marked: color-mix(in srgb, var(--color-nc-danger) 70%, white);
+  --color-nc-warning: #f1fa8c;
+  --color-nc-success: #50fa7b;
+  --color-nc-tab-bg: #004a94;
+  --color-nc-tab-border: #007070;
+  --color-nc-tab-text: #e5f7ff;
+  --color-nc-tab-hover-bg: #0059a8;
+  --color-nc-tab-hover-text: #ffffff;
+  --color-nc-tab-active-bg: #0068b8;
+  --color-nc-tab-active-border: #00aaaa;
+  --color-nc-tab-active-text: #ffffff;
+  --color-nc-drive-bg: #004a94;
+  --color-nc-drive-border: #007070;
+  --color-nc-drive-text: #e5f7ff;
+  --color-nc-drive-hover-bg: #0059a8;
+  --color-nc-drive-hover-border: #00aaaa;
+  --color-nc-drive-hover-text: #ffffff;
+  --color-nc-drive-active-bg: #0068b8;
+  --color-nc-drive-active-text: #ffffff;
+  --color-nc-drive-local-border: #007070;
+  --color-nc-drive-local-icon: #00ffff;
+  --color-nc-drive-local-active-border: #00ffff;
+  --color-nc-drive-network-bg: #004f8f;
+  --color-nc-drive-network-border: #00aaaa;
+  --color-nc-drive-network-icon: #8be9fd;
+  --color-nc-drive-network-active-border: #8be9fd;
+  --color-nc-drive-removable-bg: #005052;
+  --color-nc-drive-removable-border: #008f8f;
+  --color-nc-drive-removable-icon: #50fa7b;
+  --color-nc-drive-removable-active-border: #50fa7b;
+}
+
+/* Light Themes */
+
+[data-theme="github-light"] {
+  --color-nc-bg-deep: #f6f8fa;
+  --color-nc-bg: #ffffff;
+  --color-nc-bg-panel: #ffffff;
+  --color-nc-bg-alt: #f9fbfc;
+  --color-nc-bg-header: #f3f4f6;
+  --color-nc-bg-hover: #f3f4f6;
+  --color-nc-bg-selected: #ddf4ff;
+  --color-nc-bg-active: #b6e3ff;
+  --color-nc-border: #d0d7de;
+  --color-nc-border-bright: #bcbec4;
+  --color-nc-text: #24292f;
+  --color-nc-text-dim: #57606a;
+  --color-nc-text-bright: #000000;
+  --color-nc-accent: #0969da;
+  --color-nc-accent-dim: #54aeff;
+  --color-nc-accent-glow: #0969da33;
+  --color-nc-dir: #0969da;
+  --color-nc-exec: #1a7f37;
+  --color-nc-archive: #cf222e;
+  --color-nc-image: #8250df;
+  --color-nc-symlink: #0550ae;
+  --color-nc-danger: #cf222e;
+  --color-nc-marked: var(--color-nc-danger);
+  --color-nc-warning: #9a6700;
+  --color-nc-success: #1a7f37;
+
+  /* Folder tabs + drive bar (restored from legacy v0.8.34) */
+  --color-nc-tab-bg: #f3f4f6;
+  --color-nc-tab-border: #d0d7de;
+  --color-nc-tab-text: #57606a;
+  --color-nc-tab-hover-bg: #eaeef2;
+  --color-nc-tab-hover-text: #24292f;
+  --color-nc-tab-active-bg: #ffffff;
+  --color-nc-tab-active-border: #d0d7de;
+  --color-nc-tab-active-text: #24292f;
+  --color-nc-drive-bg: #f3f4f6;
+  --color-nc-drive-border: #d0d7de;
+  --color-nc-drive-text: #57606a;
+  --color-nc-drive-hover-bg: #eaeef2;
+  --color-nc-drive-hover-border: #afb8c1;
+  --color-nc-drive-hover-text: #24292f;
+  --color-nc-drive-active-bg: #ffffff;
+  --color-nc-drive-active-text: #24292f;
+  --color-nc-drive-local-border: #d0d7de;
+  --color-nc-drive-local-icon: #0969da;
+  --color-nc-drive-local-active-border: #0969da;
+  --color-nc-drive-network-bg: #ddf4ff;
+  --color-nc-drive-network-border: #54aeff;
+  --color-nc-drive-network-icon: #0969da;
+  --color-nc-drive-network-active-border: #0969da;
+  --color-nc-drive-removable-bg: #dafbe1;
+  --color-nc-drive-removable-border: #4ac26b;
+  --color-nc-drive-removable-icon: #1a7f37;
+  --color-nc-drive-removable-active-border: #1a7f37;
+}
+
+[data-theme="solarized-light"] {
+  --color-nc-bg-deep: #fdf6e3;
+  --color-nc-bg: #eee8d5;
+  --color-nc-bg-panel: #fdf6e3;
+  --color-nc-bg-alt: #faf3cd;
+  --color-nc-bg-header: #eee8d5;
+  --color-nc-bg-hover: #e0d9c6;
+  --color-nc-bg-selected: #e0d9c6;
+  --color-nc-bg-active: #d0c8b6;
+  --color-nc-border: #d0c8b6;
+  --color-nc-border-bright: #93a1a1;
+  --color-nc-text: #657b83;
+  --color-nc-text-dim: #93a1a1;
+  --color-nc-text-bright: #073642;
+  --color-nc-accent: #268bd2;
+  --color-nc-accent-dim: #2aa198;
+  --color-nc-accent-glow: #268bd233;
+  --color-nc-dir: #268bd2;
+  --color-nc-exec: #859900;
+  --color-nc-archive: #cb4b16;
+  --color-nc-image: #d33682;
+  --color-nc-symlink: #2aa198;
+  --color-nc-danger: #dc322f;
+  --color-nc-marked: var(--color-nc-danger);
+  --color-nc-warning: #b58900;
+  --color-nc-success: #859900;
+
+  /* Folder tabs + drive bar (restored from legacy v0.8.34) */
+  --color-nc-tab-bg: #eee8d5;
+  --color-nc-tab-border: #d0c8b6;
+  --color-nc-tab-text: #657b83;
+  --color-nc-tab-hover-bg: #e0d9c6;
+  --color-nc-tab-hover-text: #073642;
+  --color-nc-tab-active-bg: #fdf6e3;
+  --color-nc-tab-active-border: #93a1a1;
+  --color-nc-tab-active-text: #073642;
+  --color-nc-drive-bg: #eee8d5;
+  --color-nc-drive-border: #d0c8b6;
+  --color-nc-drive-text: #657b83;
+  --color-nc-drive-hover-bg: #e0d9c6;
+  --color-nc-drive-hover-border: #93a1a1;
+  --color-nc-drive-hover-text: #073642;
+  --color-nc-drive-active-bg: #fdf6e3;
+  --color-nc-drive-active-text: #073642;
+  --color-nc-drive-local-border: #d0c8b6;
+  --color-nc-drive-local-icon: #268bd2;
+  --color-nc-drive-local-active-border: #268bd2;
+  --color-nc-drive-network-bg: #dce9f0;
+  --color-nc-drive-network-border: #7fb8dd;
+  --color-nc-drive-network-icon: #268bd2;
+  --color-nc-drive-network-active-border: #268bd2;
+  --color-nc-drive-removable-bg: #eef2d9;
+  --color-nc-drive-removable-border: #a3b565;
+  --color-nc-drive-removable-icon: #859900;
+  --color-nc-drive-removable-active-border: #859900;
+}
+
+[data-theme="gruvbox-light"] {
+  --color-nc-bg-deep: #fbf1c7;
+  --color-nc-bg: #ebdbb2;
+  --color-nc-bg-panel: #f9f5d7;
+  --color-nc-bg-alt: #f2edcd;
+  --color-nc-bg-header: #ebdbb2;
+  --color-nc-bg-hover: #d5c4a1;
+  --color-nc-bg-selected: #d5c4a1;
+  --color-nc-bg-active: #bdae93;
+  --color-nc-border: #d5c4a1;
+  --color-nc-border-bright: #bdae93;
+  --color-nc-text: #3c3836;
+  --color-nc-text-dim: #7c6f64;
+  --color-nc-text-bright: #282828;
+  --color-nc-accent: #458588;
+  --color-nc-accent-dim: #83a598;
+  --color-nc-accent-glow: #45858833;
+  --color-nc-dir: #458588;
+  --color-nc-exec: #98971a;
+  --color-nc-archive: #d65d0e;
+  --color-nc-image: #b16286;
+  --color-nc-symlink: #689d6a;
+  --color-nc-danger: #cc241d;
+  --color-nc-marked: var(--color-nc-danger);
+  --color-nc-warning: #d79921;
+  --color-nc-success: #98971a;
+
+  /* Folder tabs + drive bar (restored from legacy v0.8.34) */
+  --color-nc-tab-bg: #ebdbb2;
+  --color-nc-tab-border: #d5c4a1;
+  --color-nc-tab-text: #3c3836;
+  --color-nc-tab-hover-bg: #d5c4a1;
+  --color-nc-tab-hover-text: #282828;
+  --color-nc-tab-active-bg: #f9f5d7;
+  --color-nc-tab-active-border: #bdae93;
+  --color-nc-tab-active-text: #282828;
+  --color-nc-drive-bg: #ebdbb2;
+  --color-nc-drive-border: #d5c4a1;
+  --color-nc-drive-text: #3c3836;
+  --color-nc-drive-hover-bg: #d5c4a1;
+  --color-nc-drive-hover-border: #bdae93;
+  --color-nc-drive-hover-text: #282828;
+  --color-nc-drive-active-bg: #f9f5d7;
+  --color-nc-drive-active-text: #282828;
+  --color-nc-drive-local-border: #d5c4a1;
+  --color-nc-drive-local-icon: #458588;
+  --color-nc-drive-local-active-border: #458588;
+  --color-nc-drive-network-bg: #dde8e8;
+  --color-nc-drive-network-border: #83a598;
+  --color-nc-drive-network-icon: #458588;
+  --color-nc-drive-network-active-border: #458588;
+  --color-nc-drive-removable-bg: #e5e6c0;
+  --color-nc-drive-removable-border: #b8bb26;
+  --color-nc-drive-removable-icon: #98971a;
+  --color-nc-drive-removable-active-border: #98971a;
+}
+
+[data-theme="catppuccin-latte"] {
+  --color-nc-bg-deep: #ffffff;
+  --color-nc-bg: #e6e9ef;
+  --color-nc-bg-panel: #e6e9ef;
+  --color-nc-bg-alt: #e0e3ea;
+  --color-nc-bg-header: #ccd0da;
+  --color-nc-bg-hover: #ccd0da;
+  --color-nc-bg-selected: #bcc0cc;
+  --color-nc-bg-active: #acb0be;
+  --color-nc-border: #bcc0cc;
+  --color-nc-border-bright: #acb0be;
+  --color-nc-text: #4c4f69;
+  --color-nc-text-dim: #7c7f93;
+  --color-nc-text-bright: #202028;
+  --color-nc-accent: #1e66f5;
+  --color-nc-accent-dim: #7287fd;
+  --color-nc-accent-glow: #1e66f533;
+  --color-nc-dir: #1e66f5;
+  --color-nc-exec: #40a02b;
+  --color-nc-archive: #fe640b;
+  --color-nc-image: #8839ef;
+  --color-nc-symlink: #209fb5;
+  --color-nc-danger: #d20f39;
+  --color-nc-marked: var(--color-nc-danger);
+  --color-nc-warning: #df8e1d;
+  --color-nc-success: #40a02b;
+
+  /* Folder tabs + drive bar (restored from legacy v0.8.34) */
+  --color-nc-tab-bg: #ccd0da;
+  --color-nc-tab-border: #bcc0cc;
+  --color-nc-tab-text: #4c4f69;
+  --color-nc-tab-hover-bg: #bcc0cc;
+  --color-nc-tab-hover-text: #202028;
+  --color-nc-tab-active-bg: #ffffff;
+  --color-nc-tab-active-border: #acb0be;
+  --color-nc-tab-active-text: #202028;
+  --color-nc-drive-bg: #ccd0da;
+  --color-nc-drive-border: #bcc0cc;
+  --color-nc-drive-text: #4c4f69;
+  --color-nc-drive-hover-bg: #bcc0cc;
+  --color-nc-drive-hover-border: #acb0be;
+  --color-nc-drive-hover-text: #202028;
+  --color-nc-drive-active-bg: #ffffff;
+  --color-nc-drive-active-text: #202028;
+  --color-nc-drive-local-border: #bcc0cc;
+  --color-nc-drive-local-icon: #1e66f5;
+  --color-nc-drive-local-active-border: #1e66f5;
+  --color-nc-drive-network-bg: #dce4fc;
+  --color-nc-drive-network-border: #7287fd;
+  --color-nc-drive-network-icon: #1e66f5;
+  --color-nc-drive-network-active-border: #1e66f5;
+  --color-nc-drive-removable-bg: #dcefd4;
+  --color-nc-drive-removable-border: #8ac26f;
+  --color-nc-drive-removable-icon: #40a02b;
+  --color-nc-drive-removable-active-border: #40a02b;
+}
+
+[data-theme="arctic-light"] {
+  --color-nc-bg-deep: #ffffff;
+  --color-nc-bg: #e5e9f0;
+  --color-nc-bg-panel: #e5e9f0;
+  --color-nc-bg-alt: #dfe3ea;
+  --color-nc-bg-header: #d8dee9;
+  --color-nc-bg-hover: #d8dee9;
+  --color-nc-bg-selected: #c3ccd8;
+  --color-nc-bg-active: #b0bdcb;
+  --color-nc-border: #c3ccd8;
+  --color-nc-border-bright: #b0bdcb;
+  --color-nc-text: #4c566a;
+  --color-nc-text-dim: #434c5e;
+  --color-nc-text-bright: #2e3440;
+  --color-nc-accent: #5e81ac;
+  --color-nc-accent-dim: #81a1c1;
+  --color-nc-accent-glow: #5e81ac33;
+  --color-nc-dir: #5e81ac;
+  --color-nc-exec: #a3be8c;
+  --color-nc-archive: #d08770;
+  --color-nc-image: #b48ead;
+  --color-nc-symlink: #88c0d0;
+  --color-nc-danger: #bf616a;
+  --color-nc-marked: var(--color-nc-danger);
+  --color-nc-warning: #ebcb8b;
+  --color-nc-success: #a3be8c;
+
+  /* Folder tabs + drive bar (restored from legacy v0.8.34) */
+  --color-nc-tab-bg: #d8dee9;
+  --color-nc-tab-border: #c3ccd8;
+  --color-nc-tab-text: #4c566a;
+  --color-nc-tab-hover-bg: #c3ccd8;
+  --color-nc-tab-hover-text: #2e3440;
+  --color-nc-tab-active-bg: #ffffff;
+  --color-nc-tab-active-border: #b0bdcb;
+  --color-nc-tab-active-text: #2e3440;
+  --color-nc-drive-bg: #d8dee9;
+  --color-nc-drive-border: #c3ccd8;
+  --color-nc-drive-text: #4c566a;
+  --color-nc-drive-hover-bg: #c3ccd8;
+  --color-nc-drive-hover-border: #b0bdcb;
+  --color-nc-drive-hover-text: #2e3440;
+  --color-nc-drive-active-bg: #ffffff;
+  --color-nc-drive-active-text: #2e3440;
+  --color-nc-drive-local-border: #c3ccd8;
+  --color-nc-drive-local-icon: #5e81ac;
+  --color-nc-drive-local-active-border: #5e81ac;
+  --color-nc-drive-network-bg: #dce6f0;
+  --color-nc-drive-network-border: #81a1c1;
+  --color-nc-drive-network-icon: #5e81ac;
+  --color-nc-drive-network-active-border: #5e81ac;
+  --color-nc-drive-removable-bg: #e3ecda;
+  --color-nc-drive-removable-border: #a3be8c;
+  --color-nc-drive-removable-icon: #7a9a5f;
+  --color-nc-drive-removable-active-border: #7a9a5f;
+}
+
+@media (max-width: 768px), (prefers-reduced-transparency: reduce) {
+  :root {
+    --nc-overlay-blur: none;
+  }
+}
+
+/* ===== Global Reset ===== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-main-name);
+  font-size: var(--font-main-size);
+  line-height: 1.4;
+  background: var(--color-nc-bg-deep);
+  color: var(--color-nc-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  cursor: default;
+}
+
+/* ===== Scrollbar Styling ===== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-nc-bg-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-nc-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-nc-border-bright);
+}
+
+/* ===== Selection ===== */
+::selection {
+  background: transparent !important;
+}
+
+input::selection,
+textarea::selection,
+[contenteditable="true"]::selection,
+[contenteditable]::selection {
+  background: var(--color-nc-accent) !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+[draggable="true"] {
+  cursor: grab;
+}
+
+[draggable="true"]:active {
+  cursor: grabbing;
+}
+
+.dragging-copy {
+  cursor: copy !important;
+}
+
+.dragging-move {
+  cursor: move !important;
+}
+
+.dragging-none {
+  cursor: no-drop !important;
+}
+
+@media (hover: none), (pointer: coarse) {
+  :root {
+    --nc-touch-target-min: 44px;
+  }
+
+  :where(.toolbar-btn, .up-btn, .op-btn, .fkey-btn, .col-header, .menu-item, .close-btn, .new-tab-btn) {
+    min-width: var(--nc-touch-target-min) !important;
+    min-height: var(--nc-touch-target-min) !important;
+  }
+
+  :where(.file-list, .help-body, .search-results, .results-container, .viewer-body, .text-viewer, .hex-viewer, .modal-body, .dialog-body) {
+    overscroll-behavior: contain;
+  }
+}
+
+@media (max-width: 700px), (max-height: 560px) {
+  :where(.modal-backdrop, .modal-overlay, .dialog-overlay, .help-overlay, .viewer-overlay) {
+    align-items: flex-start !important;
+    justify-content: center !important;
+    padding:
+      max(8px, env(safe-area-inset-top))
+      max(8px, env(safe-area-inset-right))
+      max(8px, env(safe-area-inset-bottom))
+      max(8px, env(safe-area-inset-left)) !important;
+    overflow: auto !important;
+  }
+
+  :where(.modal, .modal-box, .modal-content, .dialog-box, .help-modal, .viewer-container, .task-card) {
+    width: min(100%, calc(100vw - 16px)) !important;
+    min-width: 0 !important;
+    max-width: calc(100vw - 16px) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: calc(100dvh - 16px) !important;
+    transform: none !important;
+    inset: auto !important;
+    margin: 0 auto !important;
+  }
+}

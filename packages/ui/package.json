@@ -1,0 +1,28 @@
+{
+  "name": "@nexus/ui",
+  "version": "0.9.17",
+  "private": true,
+  "type": "module",
+  "description": "Shared NexusCommander Svelte frontend: components, stores, theme, i18n, utils, plugin-api, locales. Transport-agnostic (see ipc-contract).",
+  "svelte": "./src/lib/index.ts",
+  "types": "./src/lib/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/lib/index.ts",
+      "svelte": "./src/lib/index.ts",
+      "default": "./src/lib/index.ts"
+    },
+    "./*.svelte": {
+      "svelte": "./src/lib/*.svelte",
+      "default": "./src/lib/*.svelte"
+    },
+    "./*.json": {
+      "default": "./src/lib/*.json"
+    },
+    "./*": {
+      "types": "./src/lib/*.ts",
+      "svelte": "./src/lib/*.ts",
+      "default": "./src/lib/*.ts"
+    }
+  }
+}

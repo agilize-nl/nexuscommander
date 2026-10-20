@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en" data-theme="midnight">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      :root {
+        --nc-startup-bg: #0a0e17;
+        color-scheme: dark;
+        background-color: var(--nc-startup-bg);
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background: var(--nc-startup-bg);
+      }
+
+      body > div {
+        min-height: 100%;
+        background: var(--nc-startup-bg);
+      }
+    </style>
+    <script>
+      (function() {
+        try {
+          var defaultTheme = 'midnight';
+          var theme = localStorage.getItem('nc-theme') || defaultTheme;
+          var startupColors = {
+            'midnight': '#0a0e17',
+            'dracula': '#21222c',
+            'solarized-dark': '#00212b',
+            'gruvbox': '#1d2021',
+            'ocean': '#0f111a',
+            'nortonly': '#003870',
+            'github-light': '#f6f8fa',
+            'solarized-light': '#fdf6e3',
+            'gruvbox-light': '#fbf1c7',
+            'catppuccin-latte': '#ffffff',
+            'arctic-light': '#ffffff'
+          };
+          var startupColor = startupColors[theme] || startupColors[defaultTheme];
+
+          if (!startupColors[theme]) {
+            theme = defaultTheme;
+          }
+
+          document.documentElement.setAttribute('data-theme', theme);
+          document.documentElement.style.setProperty('--nc-startup-bg', startupColor);
+          document.documentElement.style.backgroundColor = startupColor;
+          document.documentElement.style.colorScheme = theme.indexOf('light') === -1 && theme.indexOf('latte') === -1 ? 'dark' : 'light';
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="icon" type="image/png" sizes="512x512" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- No version here on purpose: the window title in src-tauri/tauri.conf.json is
+         the single source, and it is maintained by scripts/bump-version.sh. A second
+         hardcoded copy is what left this file stuck on v0.8.29 for five releases. -->
+    <!-- No webfont <link> either: Inter/JetBrains Mono are resolved from the system
+         via the --font-family-* stacks in app.css. Fetching them from Google would
+         make a cold start depend on the network and stall the first paint. -->
+    <title>Nexus Commander</title>
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>

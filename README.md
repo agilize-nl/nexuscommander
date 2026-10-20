@@ -1,6 +1,19 @@
 # NexusCommander (monorepo)
 
-Eén repo met een **gedeelde Svelte-frontend** die twee shells voedt:
+Eén repo met een **gedeelde Svelte-frontend** die twee shells voedt.
+
+[![NexusCommander 0.9.17 — dubbele panelen met het Midnight-thema](apps/web/docs/media/screenshots/dual-pane-browsing.png)](apps/web/docs/media/screenshots/dual-pane-browsing.png)
+
+Actuele screenshots van de webversie **0.9.17**, met demonstratiebestanden. Klik op een afbeelding voor het volledige formaat.
+
+| Bestandsbeheer | Thema's |
+| --- | --- |
+| [![Kopiëren met F5](apps/web/docs/media/screenshots/copy-with-f5.png)](apps/web/docs/media/screenshots/copy-with-f5.png)<br>Kopiëren met F5 | [![GitHub Light](apps/web/docs/media/screenshots/light-themes.png)](apps/web/docs/media/screenshots/light-themes.png)<br>GitHub Light |
+| [![ZIP-archief als map openen](apps/web/docs/media/screenshots/archives-as-folders.png)](apps/web/docs/media/screenshots/archives-as-folders.png)<br>Archieven als mappen | [![Dracula](apps/web/docs/media/screenshots/dark-themes.png)](apps/web/docs/media/screenshots/dark-themes.png)<br>Dracula |
+
+[Alle screenshots en thema's →](apps/web/README.md#see-it-in-action)
+
+## Monorepo
 
 ```
 NexusCommander/

@@ -2,7 +2,7 @@
 
 A web-native, dual-pane (orthodox) file manager. SvelteKit frontend, Express backend, installable as a PWA — no Electron.
 
-[![NexusCommander dual-pane browsing demo](docs/media/demo-videos/01-dual-pane-browsing.gif)](docs/media/demo-videos/01-dual-pane-browsing.mp4)
+[![NexusCommander 0.9.17 — dual-pane browsing](docs/media/screenshots/dual-pane-browsing.png)](docs/media/screenshots/dual-pane-browsing.png)
 
 ## The Origin Story
 
@@ -30,17 +30,17 @@ Nexus Commander is a dual-pane file manager with a SvelteKit frontend and an Exp
 
 ## See It in Action
 
-Click a preview to watch the short demo.
+Screenshots from **v0.9.17**, using demonstration files. Click a preview to see it at full size.
 
 | Core workflow | Themes |
 | --- | --- |
-| [![Dual-pane browsing](docs/media/screenshots/dual-pane-browsing.png)](docs/media/demo-videos/01-dual-pane-browsing.mp4)<br>**Dual-pane browsing** | [![Light themes](docs/media/screenshots/light-themes.png)](docs/media/demo-videos/04-light-themes.mp4)<br>**Light theme gallery** |
-| [![Copy files with F5](docs/media/screenshots/copy-with-f5.png)](docs/media/demo-videos/02-copy-with-f5.mp4)<br>**Copy files with F5** | [![Light mode in use](docs/media/screenshots/light-mode-in-use.png)](docs/media/demo-videos/05-light-mode-in-use.mp4)<br>**Light mode in use** |
-| [![Browse archives as folders](docs/media/screenshots/archives-as-folders.png)](docs/media/demo-videos/03-archives-as-folders.mp4)<br>**Browse archives as folders** | [![Dark themes](docs/media/screenshots/dark-themes.png)](docs/media/demo-videos/06-dark-themes.mp4)<br>**Dark theme gallery** |
+| [![Dual-pane browsing](docs/media/screenshots/dual-pane-browsing.png)](docs/media/screenshots/dual-pane-browsing.png)<br>**Dual-pane browsing** | [![Light themes](docs/media/screenshots/light-themes.png)](docs/media/screenshots/light-themes.png)<br>**GitHub Light** |
+| [![Copy files with F5](docs/media/screenshots/copy-with-f5.png)](docs/media/screenshots/copy-with-f5.png)<br>**Copy files with F5** | [![Light mode in use](docs/media/screenshots/light-mode-in-use.png)](docs/media/screenshots/light-mode-in-use.png)<br>**Catppuccin Latte** |
+| [![Browse archives as folders](docs/media/screenshots/archives-as-folders.png)](docs/media/screenshots/archives-as-folders.png)<br>**Browse archives as folders** | [![Dark themes](docs/media/screenshots/dark-themes.png)](docs/media/screenshots/dark-themes.png)<br>**Dracula** |
 
 ### Nortonly Dark Theme
 
-[![NexusCommander using the Nortonly dark theme](docs/media/screenshots/nortonly.png)](docs/media/demo-videos/06-dark-themes.mp4)
+[![NexusCommander using the Nortonly dark theme](docs/media/screenshots/nortonly.png)](docs/media/screenshots/nortonly.png)
 
 ## Stack
 
